@@ -12,3 +12,4 @@ C:\Users\pietro.pacheco\source\repos\CnpjValidate\CnpjValidate\obj\Debug\net8.0\
 C:\Users\pietro.pacheco\source\repos\CnpjValidate\CnpjValidate\obj\Debug\net8.0\CnpjValidate.pdb
 C:\Users\pietro.pacheco\source\repos\CnpjValidate\CnpjValidate\obj\Debug\net8.0\CnpjValidate.genruntimeconfig.cache
 C:\Users\pietro.pacheco\source\repos\CnpjValidate\CnpjValidate\obj\Debug\net8.0\ref\CnpjValidate.dll
+C:\Users\pietro.pacheco\source\repos\CnpjValidate\CnpjValidate\obj\Debug\net8.0\CnpjValidate.sourcelink.json

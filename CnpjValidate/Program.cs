@@ -3,8 +3,8 @@ using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Net.Http;
-using CnpjValidate;
 using CnpjVerify;
+using ApiRequestBrasil;
 
 
 namespace MainProg
@@ -29,21 +29,27 @@ namespace MainProg
                 Console.WriteLine("Invalid CNPJ");
             }
 
-            
 
 
         }
         async static void teste(string cnpj)
         {
+
+
             try
             {
-                var empresaBrasil = await DadosEmpresaWs.GetEmpresa(cnpj);
-                Console.WriteLine(empresaBrasil.capital_social);
-                Console.WriteLine(empresaBrasil.razao_social);
+                var empresa = await DadosEmpresaWs.GetEmpresa(cnpj);
+                Console.WriteLine(empresa.razao_social);
+                Console.WriteLine(empresa.capital_social);
+
+
             }
             catch (Exception ex)
             {
-                throw(ex);
+                throw (ex);
+                var empresaBrasil = await DadosEmpresaBrasil.GetEmpresa(cnpj);
+                Console.WriteLine(empresaBrasil.razao_social);
+                Console.WriteLine(empresaBrasil.pais);
 
             }
 
