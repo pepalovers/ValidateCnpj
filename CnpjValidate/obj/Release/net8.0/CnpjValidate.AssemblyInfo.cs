@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CnpjValidate")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+01a4bba0b17e7a0a77f5ce043df3f36fef9c6a65")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4febbf42ecb8e708116f3272720731909f48608c")]
 [assembly: System.Reflection.AssemblyProductAttribute("CnpjValidate")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CnpjValidate")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

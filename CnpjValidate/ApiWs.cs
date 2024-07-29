@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Net.Http;
 using MainProg;
+using System.Net;
 
 
 namespace ApiRequestWs
@@ -17,14 +18,28 @@ namespace ApiRequestWs
             var client = new HttpClient();
 
 
-            HttpResponseMessage? response = client.GetAsync(endereco).Result;
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            Empresa returnCnpj = JsonSerializer.Deserialize<Empresa>(responseBody);
+            try
+            {
 
-            return returnCnpj;
+                HttpResponseMessage? response = client.GetAsync(endereco).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"Status Code do Response : {(int)response.StatusCode} {response.ReasonPhrase}");
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    Empresa returnCnpj = JsonSerializer.Deserialize<Empresa>(responseBody);
 
+                    return returnCnpj;
 
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
 
         }
     }
@@ -33,6 +48,7 @@ namespace ApiRequestWs
 
     public class Empresa
     {
+        public bool IsSuccessStatusCode { get; }
         public string cnpj_raiz { get; set; }
         public string razao_social { get; set; }
         public string capital_social { get; set; }
@@ -43,7 +59,6 @@ namespace ApiRequestWs
         public NaturezaJuridica Juridica { get; set; }
         public QualificacaoDoResponsavel QualificacaoDoResponsavel { get; set; }
         public Socios Socios { get; set; }
-        public string simples { get; set; }
         public Estabelecimento Estabelecimento { get; set; }
         public Pais Pais { get; set; }
         public Estado Estado { get; set; }

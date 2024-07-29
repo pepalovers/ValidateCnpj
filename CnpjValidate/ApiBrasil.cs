@@ -3,6 +3,7 @@ using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Net.Http;
+using System.Net;
 
 
 namespace ApiRequestBrasil
@@ -15,14 +16,28 @@ namespace ApiRequestBrasil
             var endereco = $@"https://brasilapi.com.br/api/cnpj/v1/{cnpj}";
             var client = new HttpClient();
 
+            try
+            {
 
-            HttpResponseMessage? response = client.GetAsync(endereco).Result;
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            Empresa returnCnpj = JsonSerializer.Deserialize<Empresa>(responseBody);
+                HttpResponseMessage? response = client.GetAsync(endereco).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"Status Code do Response : {(int)response.StatusCode} {response.ReasonPhrase}");
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    Empresa returnCnpj = JsonSerializer.Deserialize<Empresa>(responseBody);
 
-            return returnCnpj;
+                    return returnCnpj;
 
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
 
         }
     }
@@ -32,6 +47,7 @@ namespace ApiRequest
 {
     public class Empresa
     {
+        public bool IsSuccessStatusCode { get; }
         public string uf { get; set; }
         public string cep { get; set; }
         public CnaesSecundario CnaesSecundario { get; set; }
